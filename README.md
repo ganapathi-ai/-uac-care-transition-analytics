@@ -10,7 +10,6 @@ This project provides comprehensive analytics for the U.S. Department of Health 
 - 🚨 **Bottleneck Detection & Alerts**
 - 📈 **Outcome Trend Analysis**
 - 📊 **Interactive Streamlit Dashboard**
-- 📄 **Comprehensive Research Paper**
 - 📝 **Executive Summary for Stakeholders**
 
 ---
@@ -23,7 +22,6 @@ UAC_Care_Transition/
 │   ├── HHS_Unaccompanied_Alien_Children_Program_.csv  # Original dataset
 │   └── uac_metrics_processed.csv                       # Processed dataset with derived metrics
 ├── app.py                                              # Streamlit dashboard application
-├── research_paper.md                                   # Comprehensive research paper
 ├── executive_summary.md                                # Executive summary for stakeholders
 ├── requirements.txt                                    # Python dependencies
 └── README.md                                           # This file
