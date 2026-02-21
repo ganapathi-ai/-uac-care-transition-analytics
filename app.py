@@ -128,7 +128,7 @@ with col1:
         hovermode='x unified',
         height=400
     )
-    st.plotly_chart(fig_pipeline, width='stretch')
+    st.plotly_chart(fig_pipeline, use_container_width=True)
 
 with col2:
     fig_flow = go.Figure()
@@ -149,7 +149,7 @@ with col2:
         hovermode='x unified',
         height=400
     )
-    st.plotly_chart(fig_flow, width='stretch')
+    st.plotly_chart(fig_flow, use_container_width=True)
 
 # Transfer & Discharge Efficiency Panels
 st.header("⚡ Transfer & Discharge Efficiency Analysis")
@@ -179,7 +179,7 @@ with col1:
             yaxis_tickformat='.0%',
             height=400
         )
-        st.plotly_chart(fig_transfer, width='stretch')
+        st.plotly_chart(fig_transfer, use_container_width=True)
 
 with col2:
     if show_discharge:
@@ -205,7 +205,7 @@ with col2:
             yaxis_tickformat='.1%',
             height=400
         )
-        st.plotly_chart(fig_discharge, width='stretch')
+        st.plotly_chart(fig_discharge, use_container_width=True)
 
 # Bottleneck Detection
 st.header("🚨 Bottleneck Detection & Analysis")
@@ -220,7 +220,7 @@ with col1:
         color_discrete_sequence=['#FF6B6B']
     )
     fig_cbp.update_layout(height=400)
-    st.plotly_chart(fig_cbp, width='stretch')
+    st.plotly_chart(fig_cbp, use_container_width=True)
 
 with col2:
     fig_hhs = px.area(
@@ -231,7 +231,7 @@ with col2:
         color_discrete_sequence=['#4ECDC4']
     )
     fig_hhs.update_layout(height=400)
-    st.plotly_chart(fig_hhs, width='stretch')
+    st.plotly_chart(fig_hhs, use_container_width=True)
 
 # Outcome Trend Analysis
 st.header("📈 Outcome Trend Analysis")
@@ -265,7 +265,7 @@ with tab1:
         barmode='group',
         height=400
     )
-    st.plotly_chart(fig_monthly, width='stretch')
+    st.plotly_chart(fig_monthly, use_container_width=True)
 
 with tab2:
     weekday_avg = filtered_df.groupby('Day_Name').agg({
@@ -286,7 +286,7 @@ with tab2:
         markers=True
     )
     fig_weekday.update_layout(height=400)
-    st.plotly_chart(fig_weekday, width='stretch')
+    st.plotly_chart(fig_weekday, use_container_width=True)
 
 with tab3:
     fig_stability = go.Figure()
@@ -304,14 +304,14 @@ with tab3:
         yaxis_title="Stability Score",
         height=400
     )
-    st.plotly_chart(fig_stability, width='stretch')
+    st.plotly_chart(fig_stability, use_container_width=True)
 
 # Data Table
 st.header("📋 Detailed Data View")
 st.dataframe(
     filtered_df[['Date', 'CBP_Custody', 'HHS_Care', 'Transferred_Out', 'Discharged',
                  'Transfer_Efficiency_Ratio', 'Discharge_Effectiveness', 'Pipeline_Throughput']].tail(20),
-    width='stretch'
+    use_container_width=True
 )
 
 # Footer

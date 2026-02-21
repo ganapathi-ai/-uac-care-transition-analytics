@@ -1,40 +1,29 @@
 @echo off
 echo ========================================
-echo   UAC Analytics - Public URL Setup
+echo   UAC Analytics - Local Public URL Setup
 echo ========================================
 echo.
 
-REM Check if ngrok is installed
 where ngrok >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] ngrok is not installed!
-    echo.
-    echo Please install ngrok:
-    echo 1. Download from: https://ngrok.com/download
-    echo 2. Extract ngrok.exe to this folder or add to PATH
-    echo 3. Run this script again
-    echo.
+    echo [ERROR] ngrok is not installed.
+    echo Install ngrok from https://ngrok.com/download and run this script again.
     pause
     exit /b 1
 )
 
-echo [1/3] Setting up ngrok authentication...
-ngrok config add-authtoken 39WWKz1t3uBHjAtQBmAJDaO8DFc_3evevEHLsKcnbFLcoCUS7
+if "%NGROK_AUTHTOKEN%"=="" (
+    echo [WARNING] NGROK_AUTHTOKEN is not set.
+    echo Set it first with:
+    echo   set NGROK_AUTHTOKEN=your_token_here
+    echo.
+) else (
+    echo [1/2] Configuring ngrok authentication from NGROK_AUTHTOKEN...
+    ngrok config add-authtoken %NGROK_AUTHTOKEN%
+)
 
-echo [2/3] Starting ngrok tunnel on port 8501...
+echo [2/2] Starting ngrok tunnel on port 8501...
+echo Open http://localhost:4040 to copy your public forwarding URL.
+echo Keep this window open to keep the tunnel active.
 echo.
-echo ========================================
-echo   PUBLIC URL READY!
-echo ========================================
-echo.
-echo Your dashboard is now accessible at:
-echo Check the URL below (https://xxxx.ngrok-free.app)
-echo.
-echo Or visit: http://localhost:4040
-echo.
-echo Keep this window open to maintain access!
-echo Press Ctrl+C to stop the tunnel
-echo ========================================
-echo.
-
 ngrok http 8501
